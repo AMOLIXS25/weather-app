@@ -1,10 +1,9 @@
 import style from "./styles.css";
+import { App } from "./app";
 
 const index = () => {
-    const rootElement = document.querySelector('#root');
-    const titleElement = document.createElement('h1');
-    titleElement.innerHTML = 'Webpack Config';
-    rootElement.appendChild(titleElement);
-}
+  const app = new App();
+  app.init();
+};
 
 index();
