@@ -3,7 +3,7 @@ import { App } from "./app";
 
 const index = () => {
   const app = new App();
-  app.init();
+  app.mountApp();
 };
 
 index();

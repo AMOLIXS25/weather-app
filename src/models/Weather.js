@@ -6,15 +6,25 @@ export class Weather {
   #humidity;
   #rain;
   #wind;
+  #unit;
 
-  constructor(conditions, address, tempCelcius, humidity, rain, wind) {
+  constructor(
+    conditions,
+    address,
+    tempCelcius,
+    humidity,
+    rain,
+    wind,
+    unit = "C"
+  ) {
     this.#conditions = conditions;
     this.#address = address;
     this.#tempCelcius = tempCelcius;
     this.#humidity = humidity;
     this.#rain = rain;
     this.#wind = wind;
-    this.#tempFarheneit = (this.#tempCelcius * 9) / 5 + 32;
+    this.#unit = unit;
+    this.#tempFarheneit = ((this.#tempCelcius * 9) / 5 + 32).toFixed(2);
   }
 
   set tempCelcius(tempCelcius) {
@@ -41,6 +51,10 @@ export class Weather {
     this.#rain = rain;
   }
 
+  set unit(unit) {
+    this.#unit = unit;
+  }
+
   get humidity() {
     return this.#humidity;
   }
@@ -54,7 +68,7 @@ export class Weather {
   }
 
   get tempCelcius() {
-    return this.#tempFarheneit;
+    return this.#tempCelcius;
   }
 
   get rain() {
@@ -63,5 +77,13 @@ export class Weather {
 
   get wind() {
     return this.#wind;
+  }
+
+  get tempFarhenheit() {
+    return this.#tempFarheneit;
+  }
+
+  get unit() {
+    return this.#unit;
   }
 }

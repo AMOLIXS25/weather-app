@@ -1,3 +1,101 @@
-h1 {
-    color: red;
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+body {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  background: url("./assets/images/bg.png");
+  color: #e6e7ef;
+  font-family: "Montserrat", sans-serif;
+}
+
+*,
+*::after,
+*::before {
+  color: #e6e7ef;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/**
+WEATHER COMPONENT
+*/
+.title-temp {
+  font-size: 5rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.weather-component-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  border-radius: 2rem;
+  flex-direction: column;
+  position: relative;
+}
+
+.weather-stats-components-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  width: 100%;
+}
+
+.weather-stats-component-container {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border: 1px solid #374053;
+  background-color: #212839;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+  border-radius: 5px;
+  gap: 0.2rem;
+}
+
+.weather-stats-component-container p {
+  margin: 0;
+}
+
+.weather-stats-component-container p:last-child {
+  color: #9aa2b6;
+}
+
+.celcius-farenheit-toggle-button {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  padding: 0.5rem;
+  color: #9aa2b6;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border: 1px solid #374053;
+  background-color: #212839;
+  border-radius: 5px;
+}
+
+.search-location-bar {
+  position: absolute;
+  left: 1px;
+  top: 1px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border: 1px solid #374053;
+  background-color: #212839;
+  border-radius: 5px;
+  outline: none;
+  font-family: "Montserrat", sans-serif;
+  padding: 0.3rem;
 }

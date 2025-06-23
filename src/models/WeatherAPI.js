@@ -7,16 +7,23 @@ export class WeatherAPI {
   }
 
   async #getWeatherData() {
-    const response = await fetch(
-      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${
-        this.#location
-      }?unitGroup=metric&key=USDLVLBR4BUNM5GDZ8ZVXDDBS`,
-      {
-        mode: "cors",
+    try {
+      const response = await fetch(
+        `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${
+          this.#location
+        }?unitGroup=metric&key=USDLVLBR4BUNM5GDZ8ZVXDDBS`,
+        {
+          mode: "cors",
+        }
+      );
+      if (!response.ok) {
+        throw new Error("g");
       }
-    );
-    const data = await response.json();
-    return data;
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   #processWeatherData(data) {
@@ -31,16 +38,23 @@ export class WeatherAPI {
   }
 
   async constructWeatherObject() {
-    const data = await this.#getWeatherData(this.#location);
-    const dataObject = this.#processWeatherData(data);
-    const weather = new Weather(
-      dataObject.conditions,
-      dataObject.address,
-      dataObject.tempCelcius,
-      dataObject.humidity,
-      dataObject.rain,
-      dataObject.wind
-    );
-    return weather;
+    try {
+      const data = await this.#getWeatherData(this.#location);
+      if (!data || !data.currentConditions) {
+        throw new Error("Failed to retrieve valid weather Data");
+      }
+      const dataObject = this.#processWeatherData(data);
+      const weather = new Weather(
+        dataObject.conditions,
+        dataObject.address,
+        dataObject.tempCelcius,
+        dataObject.humidity,
+        dataObject.rain,
+        dataObject.wind
+      );
+      return weather;
+    } catch (err) {
+      throw err;
+    }
   }
 }
